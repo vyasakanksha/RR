@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <title>A Simple Robot Game</title>
+
+      <style>
+         .top-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 5%;
+         }
+
+         .grid-container {
+            grid-template-columns: auto auto auto auto auto;
+            padding-left: 28%;
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1;
+         }
+
+         .grid-item {
+            flex-basis: calc(20% - 10px);
+            position: relative;
+            border: 1px solid;
+            box-sizing: border-box;
+         }
+
+         .grid-item::before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+         }
+
+         .button-container {
+            text-align: center;	
+         }
+
+         .text-container {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            flex-basis: 100%;
+            flex: 1;
+            height: 100%;
+            float: right;
+            border:1px solid;
+            padding:5%;
+         }
+
+         .btn {
+            margin: 5px;
+         }
+
+         .h1 {
+            align: center;
+         }
+      </style> 
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/2.5.2/metisMenu.min.css">
+   </head>
+   <body>
+      <div class="main">
+         <h1 align="center"> Toy Robot Simulator </h1>
+         <div class="top-container">
+            <div class="grid-container" >
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+               <div class="grid-item"></div>
+            </div>
+            <div class="text-container"n id="logs"> </div> 	
+         </div>
+         <div class="button-container">   
+            <form method="post" action="">
+               <button type="submit" name="button" id="left" class="btn" value="left"><i class="fa fa-undo fa-4x"></i></button>
+               <button type="submit" name="button" id="right" class="btn" value="right"><i class="fa fa-repeat fa-4x"></i></button>
+               <button type="submit" name="button" id="move" class="btn" value="move"><i class="fa fa-arrow-up fa-4x"></i></button>
+               <div class="form-group col-md-2 row">
+                  <label for="x" class="col-sm-2 col-form-label">X</label>
+                  <div class="col-sm-10">
+                     <select name="x" class="form-control" id="x">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                     </select>
+                  </div>
+                  <label for="y" class="col-sm-2 col-form-label">Y</label>
+                  <div class="col-sm-10">
+                     <select name="y" class="form-control" id="y">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                     </select>
+                  </div>
+                  <label for="F" class="col-sm-2 col-form-label">F</label>
+                  <div class="col-sm-10">
+                     <select name="f" class="form-control" id="f">
+                        <option>NORTH</option>
+                        <option>SOUTH</option>
+                        <option>EAST</option>
+                        <option>WEST</option>
+                     </select>
+                  </div>
+                  <button type="submit" name="button" id="place" class="btn"
+                  value="place">PLACE</button>
+               </div>
+            </form>
+         </div> 		
+      </div>
+   </body>
+   <script> 
+      var log_item = '{{ msg }}';
+      $("#logs").append( "<b>" + log_item + "</b>");
+   </script>   
+      
+
+</html>
