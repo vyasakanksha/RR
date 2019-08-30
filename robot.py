@@ -55,7 +55,7 @@ class Orientation(Enum):
    WEST = 3
 
 def bounds(pos):
-   if pos[0] < 0 or pos[0] > 4 or pos[1] < 0 or pos[1] > 4:
+   if pos[0] < 1 or pos[0] > 5 or pos[1] < 1 or pos[1] > 5:
       return False
    else:
       return True
@@ -64,21 +64,27 @@ class Robot:
    def __init__(self, x, y, f):
       pos = (x,y)
       if(not bounds(pos)):
-         print("Out of bounds. No Action")
+         self.msg = "Out of bounds. No Action"
       else:
          try:
             self.pos = (x,y)
             self.orient = Orientation[f]
+            self.msg = "PLACE {} {} {}".format(x, y, f)
          except KeyError:
-            print("Incorect Input")
+            self.msg = "Incorect Input"
+
+      print(self.msg)
 
    def left(self):
       val = (self.orient.value - 1) % 4
       self.orient = Orientation(val)
+      self.msg = "LEFT"
 
    def right(self):
       val = (self.orient.value + 1) % 4
       self.orient = Orientation(val)
+      self.msg = "RIGHT"
+
 
    def move(self):
       pos = {
@@ -89,31 +95,34 @@ class Robot:
       }[self.orient.value]
 
       if(not bounds(pos)):
-         print("Out of bounds. No Action")
+         self.msg = "Out of bounds. No Action"
+         print(self.msg)
       else:
          self.pos = pos
+         self.msg = "MOVE"
 
 
    def report(self):
       print("position: {} facing {}".format(self.pos, self.orient.name))
 
-while(1):
-	f = 0
-	func = input("> ").split()
-	try:
-		if str(func[0]) == "PLACE":
-			test = Robot(int(func[1]), int(func[2]), func[3])
-		if str(func[0]) == "MOVE":
-			test.move()
-		if str(func[0]) == "LEFT":
-			test.left()
-		if str(func[0]) == "RIGHT":
-			test.right()
-		if str(func[0]) == "REPORT":
-			test.report()
-		else:
-			print("Incorrect Command. No Action")
-	except NameError:
-		print("Error: Place the Robot on the Board")
-	except AttributeError:
-		print("Error: Place the Robot on the Board")
+if __name__ == "__main__":
+   while(1):
+      f = 0
+      func = input("> ").split()
+      try:
+         if str(func[0]) == "PLACE":
+            test = Robot(int(func[1]), int(func[2]), func[3])
+         if str(func[0]) == "MOVE":
+            test.move()
+         if str(func[0]) == "LEFT":
+            test.left()
+         if str(func[0]) == "RIGHT":
+            test.right()
+         if str(func[0]) == "REPORT":
+            test.report()
+         else:
+            print("Incorrect Command. No Action")
+      except NameError:
+         print("Error: Place the Robot on the Board")
+      except AttributeError:
+         print("Error: Place the Robot on the Board")
